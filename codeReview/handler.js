@@ -22,6 +22,7 @@ module.exports.codeReviewByAI = async (event, context) => {
 
              
                 // Comment post to GitHub and Create a pull request
+                await closeOpenPullRequests(newItem.repoName, 'master', 'develop');
                 await postCommentToGitHub(newItem.repoName, newItem.commitId, reviewData);
                 await createPullRequest(newItem.repoName, 'master', 'develop', 'AI Code Review Enhancements and Fixes - '+newItem.commitId, reviewData);
             }
@@ -79,6 +80,27 @@ async function getGPTReview(filesData) {
     }
 }
 
+async function closeOpenPullRequests(repoName, base, head) {
+    const [owner, repo] = repoName.split('/');
+    const pullsUrl = `https://api.github.com/repos/${owner}/${repo}/pulls?state=open&base=${base}&head=${owner}:${head}`;
+
+    try {
+        const openPRs = await axios.get(pullsUrl, {
+            headers: { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}` }
+        });
+
+        for (const pr of openPRs.data) {
+            const closeUrl = `https://api.github.com/repos/${owner}/${repo}/pulls/${pr.number}`;
+            await axios.patch(closeUrl, { state: "closed" }, {
+                headers: { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}` }
+            });
+            console.log(`Closed PR #${pr.number}`);
+        }
+    } catch (err) {
+        console.error('Failed to close open pull requests:', err);
+        throw new Error(`Failed to close open pull requests: ${err.message}`);
+    }
+}
 
 async function postCommentToGitHub(repoName, commitId, comment) {
     const [owner, repo] = repoName.split('/');
