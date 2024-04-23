@@ -1,0 +1,3 @@
+saveCommitToDynamoDB/node_modules/
+saveCommitToDynamoDB/.serverless/
+saveCommitToDynamoDB/.env
