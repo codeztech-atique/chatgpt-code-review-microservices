@@ -20,17 +20,8 @@ module.exports.codeReviewByAI = async (event, context) => {
                 const filesData = await fetchFilesData(newItem.filesChanged);
                 const reviewData = await getGPTReview(filesData);
 
-                // Store review data and handle GitHub integration
-                await storeDataInDynamoDB({
-                    commitId: newItem.commitId,
-                    userId: newItem.userId,
-                    totalLinesAdded: newItem.totalLinesAdded,
-                    repoName: newItem.repoName,
-                    filesChanged: newItem.filesChanged,
-                    comments: reviewData,
-                    mergeToProduction: false
-                });
-
+             
+                // Comment post to GitHub and Create a pull request
                 await postCommentToGitHub(newItem.repoName, newItem.commitId, reviewData);
                 await createPullRequest(newItem.repoName, 'master', 'develop', 'AI Code Review Enhancements and Fixes', reviewData);
             }
