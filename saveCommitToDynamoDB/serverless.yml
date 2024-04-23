@@ -4,7 +4,7 @@ plugins:
 
 provider: 
     name: aws
-    runtime: nodejs14.x # Node JS version
+    runtime: nodejs16.x # Node JS version
     memorySize: 512
     timeout: 300
     stage: production
