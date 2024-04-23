@@ -6,3 +6,7 @@ saveCommitToDynamoDB/.env
 codeReview/node_modules/
 codeReview/.serverless/
 codeReview/.env
+
+updateToELK/node_modules/
+updateToELK/.serverless/
+updateToELK/.env

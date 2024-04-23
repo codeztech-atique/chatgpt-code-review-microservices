@@ -1,0 +1,20 @@
+{
+    "name": "update-to-elk",
+    "version": "1.0.0",
+    "description": "",
+    "main": "handler.js",
+    "dependencies": {
+      "@elastic/elasticsearch": "^8.6.0",
+      "aws-sdk": "^2.1302.0",
+      "chalk": "^5.2.0",
+      "dotenv": "^16.0.3",
+      "serverless": "^3.26.0",
+      "serverless-dotenv-plugin": "^4.0.2"
+    },
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+  }
