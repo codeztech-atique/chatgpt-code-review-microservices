@@ -1,0 +1,16 @@
+service: zoom-codeguard-review-code
+plugins:
+  - serverless-dotenv-plugin
+
+provider: 
+    name: aws
+    runtime: nodejs16.x # Node JS version
+    memorySize: 512
+    timeout: 30
+    stage: production
+    role: arn:aws:iam::485947658225:role/zoom-codeguard-save-commit
+    region: us-west-1 # AWS region
+
+functions:
+ api:
+   handler: handler.codeReviewByAI

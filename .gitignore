@@ -1,3 +1,8 @@
 saveCommitToDynamoDB/node_modules/
 saveCommitToDynamoDB/.serverless/
 saveCommitToDynamoDB/.env
+
+
+codeReview/node_modules/
+codeReview/.serverless/
+codeReview/.env
