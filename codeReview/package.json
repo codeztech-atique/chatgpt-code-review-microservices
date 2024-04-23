@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1604.0",
+    "axios": "^1.6.8",
     "dotenv": "^16.4.5",
+    "openai": "^4.38.3",
     "serverless": "^3.38.0"
   },
   "devDependencies": {
