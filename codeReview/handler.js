@@ -23,7 +23,7 @@ module.exports.codeReviewByAI = async (event, context) => {
              
                 // Comment post to GitHub and Create a pull request
                 await postCommentToGitHub(newItem.repoName, newItem.commitId, reviewData);
-                await createPullRequest(newItem.repoName, 'master', 'develop', 'AI Code Review Enhancements and Fixes', reviewData);
+                await createPullRequest(newItem.repoName, 'master', 'develop', 'AI Code Review Enhancements and Fixes - '+newItem.commitId, reviewData);
             }
         }
 
